@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 
 type NavLink = {
   label: string;
@@ -14,15 +15,17 @@ type Props = {
 
 const Navigation = ({ navLinks }: Props) => {
   const pathName = usePathname();
-
+  const session = useSession();
+  console.log(session);
+  
   return (
     <nav className='text-base flex justify-end h-full'>
       {navLinks.map((link) => {
         const isActive = pathName === link.href;
         const classes = isActive ?
-          'nav-link'
-          : 
           'nav-link_active'
+          : 
+          'nav-link'
         return (
           <Link
             key={link.label}
@@ -33,6 +36,19 @@ const Navigation = ({ navLinks }: Props) => {
           </Link> 
         )
       })}
+      {session?.data && (
+        <Link className='nav-link' href={"/profile"}>Profile</Link>
+      )}
+      {session?.data 
+      ? (
+        <Link className='nav-link' href={"#"} onClick={() => signOut({
+          callbackUrl: '/'
+        })}>
+          Sign Out
+        </Link>
+      )
+      : 
+      (<Link className='nav-link' href={"/auth/signin"}>Sing In</Link>)}
     </nav>
   );
 };

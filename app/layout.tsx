@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
+import { Providers } from './Providers';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,17 +18,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const classes = `${inter.className} flex flex-col h-screen text-slate-700`;
+  const classes = `${inter.className} flex flex-col  bg-slate-50 justify-center items-center h-screen text-slate-700`;
 
   return (
     <html lang="en">
-      <body className={classes}>
-        <Header />
-        <main className='bg-slate-50 grow p-5 h-4/6 overflow-auto'>
-          {children}
-        </main>
-        <Footer />
-      </body>
+      <Providers>
+        <body className={classes}>
+          <Header />
+          <main className='max-w-7xl w-full flex justify-center flex-col grow p-5 h-4/6 overflow-auto'>
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </Providers>
     </html>
   )
 }
