@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
+import {useTranslations} from 'next-intl'
 
 type NavLink = {
   label: string;
@@ -16,8 +17,8 @@ type Props = {
 const Navigation = ({ navLinks }: Props) => {
   const pathName = usePathname();
   const session = useSession();
+  const t = useTranslations('Navigation');
   // console.log(session);
-  // const linkClasses = 
   
   return (
     <>
@@ -39,18 +40,18 @@ const Navigation = ({ navLinks }: Props) => {
           )
         })}
         {session?.data && (
-          <Link className='nav-link' href={"/profile"}>Profile</Link>
+          <Link className='nav-link' href={"/profile"}>{t('profile')}</Link>
         )}
         {session?.data 
         ? (
           <Link className={'nav-link'} href={"#"} onClick={() => signOut({
             callbackUrl: '/'
           })}>
-            Sign Out
+            {t('signOut')}
           </Link>
         )
         : 
-        (<Link className={pathName === "/auth/signin" ? 'nav-link_active' : 'nav-link'} href={"/auth/signin"}>Sing In</Link>)}
+        (<Link className={pathName === "/auth/signin" ? 'nav-link_active' : 'nav-link'} href={"/auth/signin"}>{t('signIn')}</Link>)}
       </nav>
       <div className='md:hidden flex h-full items-center pr-5'>
         <button className='px-2'>

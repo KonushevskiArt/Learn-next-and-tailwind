@@ -16,7 +16,7 @@ export const ThemeSwitch = () => {
 
   return (
     <button
-    className='mr-5 bg-slate-200 p-1 dark:bg-slate-900 dark:hover:bg-slate-700 rounded-md hover:bg-slate-300 transition hover:scale-110 duration-100'
+    className='mr-5 bg-slate-200 px-2 dark:bg-slate-900 dark:hover:bg-slate-700 rounded-md hover:bg-slate-300 transition hover:scale-110 duration-100'
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       {theme === 'dark' 

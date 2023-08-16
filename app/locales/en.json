@@ -1,0 +1,13 @@
+{
+  "Navigation": {
+    "russian": "russian",
+    "english": "english",
+
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "profile": "Profile",
+    "signIn": "Sign in",
+    "signOut": "Sign Out"
+  }
+}

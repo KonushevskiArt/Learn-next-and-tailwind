@@ -1,15 +1,21 @@
+"use client"
 import Link from 'next/link';
 import React from 'react';
 import Navigation from './navigation/Navigation';
 import { ThemeSwitch } from './ThemeSwitch';
+import Localization from './Localization';
+import {useTranslations} from 'next-intl'
 
-const navItems = [
-  { label: 'Home', href: '/'},
-  { label: 'Blog', href: '/blog'},
-  { label: 'About', href: '/about'},
-];  
+
 
 const Header = () => {
+  const t = useTranslations('Navigation');
+
+  const navItems = [
+    { label: t('home'), href: '/'},
+    { label: t('blog'), href: '/blog'},
+    { label: t('about'), href: '/about'},
+  ];  
   return (
     <header className='h-14 w-full transition duration-100 dark:bg-slate-800 bg-slate-100 flex items-center justify-between'>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="stroke-blue-500 w-10 h-10 ml-5">
@@ -17,7 +23,10 @@ const Header = () => {
       </svg>
 
       <Navigation navLinks={navItems} />
-      <ThemeSwitch />
+      <div className='flex '>
+        <ThemeSwitch />
+        <Localization />
+      </div>
     </header>
   );
 };

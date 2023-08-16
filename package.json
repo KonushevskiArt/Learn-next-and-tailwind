@@ -16,9 +16,11 @@
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
     "next-auth": "^4.22.4",
+    "next-intl": "^2.19.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-select": "^5.7.4",
     "swr": "^2.2.0",
     "typescript": "5.1.6",
     "zustand": "^4.4.0"
