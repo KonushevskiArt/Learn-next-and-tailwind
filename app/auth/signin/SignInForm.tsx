@@ -25,7 +25,7 @@ export const SignInForm = () => {
   } 
    
   return (
-    <form className='p-8 bg-slate-300 rounded-md shadow-md flex flex-col w-80 gap-5' onSubmit={handlerSubmit}>
+    <form className='p-8 dark:bg-slate-800 bg-slate-300 rounded-md shadow-md flex flex-col w-80 gap-5' onSubmit={handlerSubmit}>
       <label className='flex flex-col'>
         <span>email:</span>
         <input className='px-2 py-1 rounded' type="email" name="email" required />
@@ -34,7 +34,10 @@ export const SignInForm = () => {
         <span>password:</span>
         <input className='px-2 py-1 rounded' type="password" name="password" required />
       </label>
-      <button className='px-2 py-1 border hover:bg-slate-900 hover:border-slate-50 hover:text-slate-50 border-slate-500 rounded bg-slate-100' type="submit">Sign In</button>
+      <button 
+        className='px-2 py-1 border dark:bg-slate-500 dark:hover:bg-slate-300 hover:bg-slate-900 hover:border-slate-50 transition duration-100 dark:hover:text-slate-800 hover:text-slate-50 border-slate-500 rounded bg-slate-100' type="submit">
+          Sign In
+      </button>
     </form>
   );
 };

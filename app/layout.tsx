@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
 import { Providers } from './Providers';
+import { ThemeProvider } from 'next-themes'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,19 +20,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const classes = `${inter.className} flex flex-col  bg-slate-50 justify-center items-center h-screen text-slate-700`;
+  const classes = `${inter.className} transition duration-100 flex flex-col dark:bg-slate-700  bg-slate-50 justify-center items-center h-screen dark:text-slate-50 text-slate-700`;
 
   return (
-    <html lang="en">
-      <Providers>
+    <html lang="en" suppressHydrationWarning>
         <body className={classes}>
-          <Header />
-          <main className='max-w-7xl w-full flex justify-center flex-col grow p-5 h-4/6 overflow-auto'>
-            {children}
-          </main>
-          <Footer />
+          <Providers>
+            <Header />
+            <main className='max-w-7xl w-full flex flex-col grow p-5 h-4/6 overflow-auto'>
+              {children}
+            </main>
+            <Footer />
+          </Providers>
         </body>
-      </Providers>
     </html>
   )
 }
