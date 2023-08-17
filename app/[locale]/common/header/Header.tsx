@@ -5,17 +5,39 @@ import Navigation from './navigation/Navigation';
 import { ThemeSwitch } from './ThemeSwitch';
 import Localization from './Localization';
 import {useTranslations} from 'next-intl'
+import { CustomSelect } from '@/app/ui/CustomSelect';
+import { useLocale } from 'next-intl';
+import {useRouter} from 'next-intl/client';
 
 
 
 const Header = () => {
   const t = useTranslations('Navigation');
 
+  const router = useRouter();
+  const locale = useLocale();
+
   const navItems = [
     { label: t('home'), href: '/'},
     { label: t('blog'), href: '/blog'},
     { label: t('about'), href: '/about'},
   ];  
+
+  const handleChange = (value: string) => {
+    if (value === 'ru') {
+      router.push('/', {locale: 'ru'});
+    } else {
+      router.push('/', {locale: 'en'});
+    }
+  }
+
+  const options = [
+    {label: 'Ru', value: 'ru'},
+    {label: 'En', value: 'en'}
+  ]
+  
+  const internationalSelectLabel = locale === 'ru' ? 'Ru' : 'En';
+
   return (
     <header className='h-14 w-full transition duration-100 dark:bg-slate-800 bg-slate-100 flex items-center justify-between'>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="stroke-blue-500 w-10 h-10 ml-5">
@@ -25,7 +47,8 @@ const Header = () => {
       <Navigation navLinks={navItems} />
       <div className='flex '>
         <ThemeSwitch />
-        <Localization />
+        {/* <Localization /> */}
+        <CustomSelect onChange={handleChange} options={options} label={internationalSelectLabel} />
       </div>
     </header>
   );

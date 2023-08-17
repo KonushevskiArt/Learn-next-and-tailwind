@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import Link from 'next/link';
+import Link from 'next-intl/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import {useTranslations} from 'next-intl'
